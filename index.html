@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosi — Information Systems &amp; Technology</title>
+  <meta name="description" content="Personal landing page of Rosi, an Information Systems and Technology student at ITB.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#top" class="logo">rosi<span class="logo-dot">.</span>dev</a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">about</a></li>
+          <li><a href="#skills">skills</a></li>
+          <li><a href="#contact">contact</a></li>
+        </ul>
+      </nav>
+
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark and light mode" aria-pressed="false">
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+        <span class="toggle-label" id="theme-label">dark</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" id="about">
+      <div class="wrap hero-inner">
+        <p class="eyebrow reveal">Nangor, Indonesia — Information Systems &amp; Technology, ITB</p>
+
+        <h1 class="hero-title reveal">
+          Hi, I'm Rosi.<br>
+          I build things<span class="cursor" aria-hidden="true">_</span>
+        </h1>
+
+        <p class="hero-bio reveal">
+          I'm an IS&amp;T student who spends more nights than I'd admit debugging
+          code that "worked five minutes ago." I like turning messy problems into
+          structured systems — whether that's a web app, a business case, or an
+          embedded board that refuses to blink an LED.
+        </p>
+
+        <div class="hero-actions reveal">
+          <a href="#skills" class="btn btn-primary">See what I'm learning</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="status-bar reveal" role="note" aria-label="Status">
+        <span class="status-dot"></span>
+        <span class="status-text">rosi@itb</span>
+        <span class="status-sep">·</span>
+        <span class="status-text">last commit: "fix layout, for real this time"</span>
+        <span class="status-sep status-sep-live">·</span>
+        <span class="status-text status-live">building at 02:14 AM</span>
+      </div>
+    </section>
+
+    <section class="skills" id="skills">
+      <div class="wrap">
+        <p class="eyebrow">currently learning</p>
+        <h2 class="section-title">Tools I'm sharpening right now</h2>
+
+        <div class="skills-grid">
+
+          <article class="skill-card">
+            <span class="skill-mono">01</span>
+            <h3>HTML &amp; CSS</h3>
+            <p>Structuring pages that hold up — semantic markup, Flexbox, and Grid instead of div soup.</p>
+          </article>
+
+          <article class="skill-card">
+            <span class="skill-mono">02</span>
+            <h3>JavaScript</h3>
+            <p>DOM manipulation, async/await, and finally understanding why my fetch calls ran out of order.</p>
+          </article>
+
+          <article class="skill-card">
+            <span class="skill-mono">03</span>
+            <h3>Git &amp; GitHub</h3>
+            <p>Writing commits a future teammate — or future me at 3 AM — can actually understand.</p>
+          </article>
+
+          <article class="skill-card">
+            <span class="skill-mono">04</span>
+            <h3>Embedded Systems</h3>
+            <p>ESP32, GPIO, and the occasional stare-down with UART when nothing prints to serial.</p>
+          </article>
+
+          <article class="skill-card">
+            <span class="skill-mono">05</span>
+            <h3>React</h3>
+            <p>Moving from static pages to components — next stop on the roadmap.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap footer-inner">
+      <div class="footer-block">
+        <p class="footer-heading">Let's talk</p>
+        <p class="footer-copy">Open to chat about web dev, embedded systems, or business case competitions.</p>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="mailto:rosi@example.com">Email</a></li>
+        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      </ul>
+    </div>
+
+    <div class="wrap footer-bottom">
+      <p>&copy; 2026 Rosi. Built with HTML &amp; CSS, one module at a time.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Bonus 1 — dark/light mode toggle using a class on <body>, all colors via CSS variables
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
+    const root = document.body;
+
+    const applyTheme = (theme) => {
+      if (theme === 'light') {
+        root.classList.add('light-mode');
+        themeLabel.textContent = 'light';
+        toggleBtn.setAttribute('aria-pressed', 'true');
+      } else {
+        root.classList.remove('light-mode');
+        themeLabel.textContent = 'dark';
+        toggleBtn.setAttribute('aria-pressed', 'false');
+      }
+      localStorage.setItem('rosi-theme', theme);
+    };
+
+    const saved = localStorage.getItem('rosi-theme');
+    if (saved) applyTheme(saved);
+
+    toggleBtn.addEventListener('click', () => {
+      const isLight = root.classList.contains('light-mode');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>
