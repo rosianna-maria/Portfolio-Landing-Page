@@ -1,16 +1,18 @@
 # Rosi — Personal Landing Page
 
 Personal portfolio homepage skeleton for GDGOC ITB Module 1 hands-on task.
-Built with plain HTML5 and CSS — no frameworks.
+Built with plain HTML5 and CSS (no frameworks).
 
 ## Structure
 
 ```
 .
 ├── assets/
-│   ├── logo-dark.png    
+│   ├── lighthouse-after.png
+│   ├── lighthouse-before.png
+│   ├── logo-dark.png   
 │   ├── logo-light.png   
-│   └── profile.jpg     
+│   └── profile.jpg      
 ├── index.html            
 ├── styles.css             
 └── README.md
@@ -46,32 +48,49 @@ Run this yourself once the site is live (e.g. via GitHub Pages) or served locall
 1. Open the page in Chrome.
 2. Open DevTools (`F12` or `Ctrl+Shift+I`) → **Lighthouse** tab.
 3. Select **Performance** and **Accessibility**, device: Mobile, then **Analyze page load**.
-4. Record the "before" scores here, then optimize (e.g. compress/self-host fonts,
+4. Record the "before" scores here, then optimize (for example compress/self-host fonts,
    add explicit image dimensions, double-check color contrast) and re-run for "after".
 5. Paste both screenshots below.
 
 **Before:**
-`[screenshot placeholder — replace after running audit]`
+![Lighthouse audit before optimization](assets/lighthouse-before.png)
 
 **After:**
-`[screenshot placeholder — replace after running audit]`
+![Lighthouse audit after optimization](assets/lighthouse-after.png)
 
-## Git workflow / commit hygiene
+## Git workflow / commit history
 
-Suggested commit sequence for meaningful history:
+This project was committed in the following sequence:
+
+1. `feat: add semantic HTML structure for landing page` — initial `index.html`
+2. `style: add layout, theming, and animations with CSS` — initial `styles.css`
+3. `docs: add project README with setup and audit instructions` — `README.md`
+4. `feat: revise hero layout, copy, and logo integration` — revised
+   `index.html` and `styles.css`, added `assets/profile.jpg`,
+   `assets/logo-dark.png`, and `assets/logo-light.png`
 
 ```bash
 git init
-git add index.html styles.css
-git commit -m "feat: add landing page skeleton with semantic HTML and CSS layout"
+git add index.html
+git commit -m "feat: add semantic HTML structure for landing page"
 
-git add assets/
-git commit -m "feat: add theme-aware logo and profile photo"
+git add styles.css
+git commit -m "style: add layout, theming, and animations with CSS"
 
-git commit -am "feat: revise hero layout, copy, and logo integration"
+git add README.md
+git commit -m "docs: add project README with setup and audit instructions"
+
+git add .
+git commit -m "feat: revise hero layout, copy, and logo integration"
+
+git add .
+git commit -m "perf: resize images to display size and optimize font loading"
+
+git add README.md
+git commit -m "docs: add Lighthouse audit before/after screenshots"
 
 git branch -M main
-git remote add origin https://github.com/rosianna-maria/portfolio-landing-page.git
+git remote add origin https://github.com/rosianna-maria/Portfolio-Landing-Page.git
 git push -u origin main
 ```
 
