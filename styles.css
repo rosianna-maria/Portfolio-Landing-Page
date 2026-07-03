@@ -1,10 +1,4 @@
-/* ==========================================================================
-   Rosi — Personal Landing Page
-   Design tokens live in CSS custom properties (Bonus 1: theming via variables)
-   ========================================================================== */
-
 :root {
-  /* -- Color: dark mode (default) -- */
   --color-bg: #0F1420;
   --color-bg-alt: #161C2C;
   --color-surface: #1D2437;
@@ -15,12 +9,10 @@
   --color-accent: #6EE7B7;
   --color-border: rgba(232, 230, 222, 0.12);
 
-  /* -- Type -- */
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* -- Layout -- */
   --wrap-width: 1080px;
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -30,7 +22,6 @@
   --radius: 10px;
 }
 
-/* Light mode overrides — toggled via .light-mode class on <body> */
 body.light-mode {
   --color-bg: #F5F1E8;
   --color-bg-alt: #ECE6D6;
@@ -42,10 +33,6 @@ body.light-mode {
   --color-accent: #1F8F6B;
   --color-border: rgba(28, 26, 21, 0.12);
 }
-
-/* ==========================================================================
-   Reset & base
-   ========================================================================== */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -112,10 +99,6 @@ ul {
   margin-bottom: var(--space-sm);
 }
 
-/* ==========================================================================
-   Header / Nav
-   ========================================================================== */
-
 .site-header {
   position: sticky;
   top: 0;
@@ -135,14 +118,31 @@ ul {
 }
 
 .logo {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
 }
 
-.logo-dot {
-  color: var(--color-primary);
+.logo-mark {
+  height: 42px;
+  width: auto;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover .logo-mark {
+  transform: scale(1.04);
+}
+
+.logo-mark-light {
+  display: none;
+}
+
+body.light-mode .logo-mark-dark {
+  display: none;
+}
+
+body.light-mode .logo-mark-light {
+  display: block;
 }
 
 .main-nav ul {
@@ -218,17 +218,38 @@ body.light-mode .toggle-thumb {
   transform: translateX(16px);
 }
 
-/* ==========================================================================
-   Hero
-   ========================================================================== */
-
 .hero {
   padding-top: var(--space-xl);
   padding-bottom: var(--space-lg);
 }
 
 .hero-inner {
-  max-width: 720px;
+  max-width: var(--wrap-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.hero-text {
+  max-width: 560px;
+  flex-shrink: 0;
+}
+
+.hero-photo {
+  flex-shrink: 0;
+  width: 280px;
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
 }
 
 .hero-title {
@@ -291,47 +312,6 @@ body.light-mode .toggle-thumb {
   transform: translateY(-2px);
 }
 
-/* -- Signature element: status bar -- */
-
-.status-bar {
-  margin-top: var(--space-xl);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-xs);
-  max-width: var(--wrap-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding: var(--space-sm) var(--space-md);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent);
-  flex-shrink: 0;
-}
-
-.status-sep {
-  color: var(--color-border);
-}
-
-.status-live {
-  color: var(--color-primary);
-}
-
-/* ==========================================================================
-   Skills
-   ========================================================================== */
-
 .skills {
   padding: var(--space-xl) 0;
   background-color: var(--color-bg-alt);
@@ -380,10 +360,6 @@ body.light-mode .toggle-thumb {
   color: var(--color-text-muted);
   font-size: 0.9rem;
 }
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
 
 .site-footer {
   padding-top: var(--space-xl);
@@ -435,10 +411,6 @@ body.light-mode .toggle-thumb {
   color: var(--color-text-muted);
 }
 
-/* ==========================================================================
-   Reveal-on-load animation (Bonus 2)
-   ========================================================================== */
-
 .reveal {
   animation: fadeInUp 0.7s ease both;
 }
@@ -447,7 +419,6 @@ body.light-mode .toggle-thumb {
 .hero-inner .reveal:nth-child(2) { animation-delay: 0.15s; }
 .hero-inner .reveal:nth-child(3) { animation-delay: 0.25s; }
 .hero-inner .reveal:nth-child(4) { animation-delay: 0.35s; }
-.status-bar.reveal { animation-delay: 0.45s; }
 
 @keyframes fadeInUp {
   from {
@@ -460,11 +431,21 @@ body.light-mode .toggle-thumb {
   }
 }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
-
 @media (max-width: 860px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-photo {
+    width: 200px;
+  }
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -474,19 +455,15 @@ body.light-mode .toggle-thumb {
   .header-inner {
     flex-wrap: wrap;
   }
-
   .main-nav ul {
     gap: var(--space-md);
   }
-
   .skills-grid {
     grid-template-columns: 1fr;
   }
-
   .footer-inner {
     flex-direction: column;
   }
-
   .status-bar {
     font-size: 0.72rem;
   }
