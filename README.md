@@ -7,8 +7,12 @@ Built with plain HTML5 and CSS — no frameworks.
 
 ```
 .
-├── index.html      # Semantic markup: header, hero, skills, footer
-├── styles.css      # Layout (Flexbox + Grid), CSS variables, animations
+├── assets/
+│   ├── logo-dark.png    
+│   ├── logo-light.png   
+│   └── profile.jpg     
+├── index.html            
+├── styles.css             
 └── README.md
 ```
 
@@ -17,6 +21,7 @@ Built with plain HTML5 and CSS — no frameworks.
 - **Semantic HTML5**: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
 - **Layout**: Flexbox for the header/hero/footer rows, CSS Grid for the skills section
 - **Responsive**: breakpoints at 860px and 640px, tested down to mobile widths
+- **Theme-aware logo**: swaps between a light and dark mark depending on the active theme
 - **Bonus 1 — CSS variables + dark/light mode**: all colors are defined as custom
   properties in `:root`, overridden inside `body.light-mode`. Toggle button in the
   header swaps the class and persists the choice in `localStorage`.
@@ -57,18 +62,16 @@ Suggested commit sequence for meaningful history:
 
 ```bash
 git init
-git add index.html
-git commit -m "Add semantic HTML skeleton for landing page"
+git add index.html styles.css
+git commit -m "feat: add landing page skeleton with semantic HTML and CSS layout"
 
-git add styles.css
-git commit -m "Add base layout with Flexbox and CSS Grid"
+git add assets/
+git commit -m "feat: add theme-aware logo and profile photo"
 
-git commit -am "Add CSS custom properties and dark/light mode toggle"
-git commit -am "Add hero and nav animations"
-git commit -am "Add responsive breakpoints for tablet and mobile"
+git commit -am "feat: revise hero layout, copy, and logo integration"
 
 git branch -M main
-git remote add origin https://github.com/<your-username>/<repo-name>.git
+git remote add origin https://github.com/rosianna-maria/portfolio-landing-page.git
 git push -u origin main
 ```
 
